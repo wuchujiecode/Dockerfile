@@ -4,5 +4,5 @@ docker run \
     --volume ./gitlab/config:/etc/gitlab \
     --volume ./gitlab/logs:/var/log/gitlab \
     --volume ./gitlab/data:/var/opt/gitlab \
-    -d --restart=always -e 'GITLAB_HOST=gitlab.jerry.com'
+    -d --restart=always -e 'GITLAB_HOST=gitlab.jerrywu.com'
     gitlab/gitlab-ce

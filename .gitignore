@@ -18,3 +18,7 @@ yarn-error.log*
 # jenkins
 jenkins_home/
 
+# gitlab
+gitlab/config
+gitlab/logs
+gitlab/data
