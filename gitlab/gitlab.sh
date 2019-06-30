@@ -1,8 +1,8 @@
 docker run \
-    --publish 443:443 --publish 80:80 --publish 22:22 \
+    --publish 10443:443 --publish 10080:80 --publish 10022:22 \
     --name gitlab-server \
-    --volume ./gitlab/config:/etc/gitlab \
-    --volume ./gitlab/logs:/var/log/gitlab \
-    --volume ./gitlab/data:/var/opt/gitlab \
-    -d --restart=always -e 'GITLAB_HOST=gitlab.jerrywu.com'
+    --volume $(pwd)/gitlab/config:/etc/gitlab \
+    --volume $(pwd)/gitlab/logs:/var/log/gitlab \
+    --volume $(pwd)/gitlab/data:/var/opt/gitlab \
+    -d --restart=always -e 'GITLAB_HOST=gitlab.jerrywu.com' \
     gitlab/gitlab-ce
