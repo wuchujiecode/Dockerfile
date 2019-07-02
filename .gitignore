@@ -22,3 +22,6 @@ jenkins_home/
 gitlab/config
 gitlab/logs
 gitlab/data
+
+
+# redis-cluster
