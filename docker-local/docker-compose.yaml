@@ -1,0 +1,53 @@
+# docker-compose.yaml
+
+version: '3.1'
+
+# services 定义容器列表
+services:
+    mysql-server:
+      environment:
+        MYSQL_ROOT_PASSWORD: "123456"
+      image: "docker.io/mysql:5.7"
+      restart: always
+      volumes:
+        - "./db:/var/lib/mysql"
+      ports:
+        - "3306:3306"
+
+    phpmyadmin-server:
+      image:
+        "phpmyadmin/phpmyadmin:latest"
+      environment:
+        PMA_USDR: "root"
+        PMA_PASSWD: "123456"
+      links:
+        - mysql-server:db
+      restart: always
+
+    nginx-server:
+      image:
+        "nginx:latest"
+      restart: always
+      volumes:
+        - "./nginx/nginx-conf:/etc/nginx/conf.d/"
+      ports:
+        - "80:80"
+      links:
+        - phpmyadmin-server:phpmyadmin-server
+
+    redis-server:
+      image:
+        "redis:3.2"
+      restart: always
+      ports:
+        - 6379:6379
+      volumes:
+        - "./redis/redis.conf:/usr/local/etc/redis/redis.conf"
+      command: redis-server /usr/local/etc/redis/redis.conf
+
+    mongo-server:
+      image:
+        "mongo:latest"
+      ports:
+        - "27017:27017"
+      
